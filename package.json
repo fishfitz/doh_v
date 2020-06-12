@@ -1,0 +1,12 @@
+{
+  "name": "doh_v",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "chromedriver": "^83.0.0",
+    "colors": "^1.4.0",
+    "prompts": "^2.3.2",
+    "puppeteer": "^3.3.0"
+  }
+}
