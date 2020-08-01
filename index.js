@@ -23,6 +23,7 @@ const vote = async (page, top) => {
   await page.goto(top);
   await page.$eval('input[name=votant]', e => e.value = name);
   await page.click('input[type=image]');
+  await new Promise((resolve) => setTimeout(resolve, 1500));
 };
 
 const voteForAll = async () => {
@@ -33,10 +34,15 @@ const voteForAll = async () => {
     let topName = top.split('/')[4];
     try {
       await vote(page, top);
+      await page.screenshot({ path: topName + '.png' });
       voteCount++;
       console.log('(•̀ᴗ•́)'.red, '🗩 ', `Le vote pour ${topName} a réussi. `);
     }
     catch(e) {
+      try {
+        await page.screenshot({ path: topName + '.png' });
+      }
+      catch(e) {}
       console.log('(′︿‵｡)'.red, '🗩 ', `Le vote pour ${topName} a échoué. Peut-être tu avais déjà voté ? `);
     }
   }
